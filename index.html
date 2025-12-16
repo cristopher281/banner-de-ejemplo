@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSelect | Plataforma de Talento Tech</title>
+    
+    <!-- Tipografía Minimalista: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuración personalizada -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Ocultar vistas por defecto */
+        .view-section {
+            display: none;
+        }
+        /* Mostrar vista activa */
+        .view-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 antialiased selection:bg-slate-200">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm border-b border-slate-100 z-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('landing')">
+                    <div class="w-8 h-8 bg-slate-900 text-white flex items-center justify-center rounded-sm">
+                        <i data-lucide="code-2" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">DevSelect</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="navigateTo('companies')" class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Empresas</button>
+                    <button onclick="navigateTo('vacancies')" class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Vacantes</button>
+                    <button onclick="navigateTo('how-it-works')" class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Cómo funciona</button>
+                    <button onclick="navigateTo('apply')" class="px-6 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-md hover:bg-slate-800 transition-all">Soy Desarrollador</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-slate-900">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 p-4 space-y-4 shadow-lg absolute w-full">
+            <button onclick="navigateTo('companies'); toggleMobileMenu()" class="block w-full text-left text-slate-600 py-2">Empresas</button>
+             <button onclick="navigateTo('vacancies'); toggleMobileMenu()" class="block w-full text-left text-slate-600 py-2">Vacantes</button>
+             <button onclick="navigateTo('how-it-works'); toggleMobileMenu()" class="block w-full text-left text-slate-600 py-2">Cómo funciona</button>
+             <button onclick="navigateTo('apply'); toggleMobileMenu()" class="block w-full bg-slate-900 text-white py-3 rounded-md mt-2">Soy Desarrollador</button>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- VISTAS DE LA APLICACIÓN -->
+    <!-- ========================================== -->
+
+    <!-- 1. LANDING PAGE -->
+    <section id="view-landing" class="view-section active pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="fade-in">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 space-y-8">
+                    <div class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wider rounded-full">
+                        Talento Tech Verificado
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-light tracking-tight text-slate-900 leading-[1.1]">
+                        Código limpio. <br/>
+                        <span class="font-semibold">Futuro brillante.</span>
+                    </h1>
+                    <p class="text-lg text-slate-500 leading-relaxed max-w-xl">
+                        Conectamos a los mejores desarrolladores con empresas globales que valoran la calidad sobre la cantidad. Sin intermediarios, solo talento.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <button onclick="navigateTo('apply')" class="h-14 px-8 bg-slate-900 text-white rounded-md font-medium hover:bg-slate-800 flex items-center justify-center gap-2 transition-all">
+                            Evaluar mi Perfil <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="navigateTo('vacancies')" class="h-14 px-8 bg-white text-slate-900 border border-slate-200 rounded-md font-medium hover:bg-slate-50 transition-all">
+                            Ver Vacantes
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-8 pt-6 border-t border-slate-100 mt-8">
+                        <div>
+                            <span class="block font-bold text-slate-900 text-2xl">500+</span>
+                            <span class="text-sm text-slate-400">Startups</span>
+                        </div>
+                        <div class="h-8 w-px bg-slate-200"></div>
+                        <div>
+                            <span class="block font-bold text-slate-900 text-2xl">$120k</span>
+                            <span class="text-sm text-slate-400">Salario Promedio</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Abstract Hero Visual -->
+                <div class="lg:w-1/2 w-full relative">
+                    <div class="aspect-square bg-slate-50 rounded-2xl overflow-hidden relative border border-slate-100 p-8 shadow-sm flex items-center justify-center">
+                        <div class="relative w-full max-w-sm">
+                            <!-- Card 1 -->
+                            <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-100 relative z-20 transform hover:scale-105 transition-transform duration-500">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex gap-3">
+                                        <div class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-white">
+                                            <i data-lucide="user" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-slate-900">Alex M.</h3>
+                                            <p class="text-xs text-slate-500">Full Stack Developer</p>
+                                        </div>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-700 text-xs px-2 py-1 rounded-full font-medium">Disponible</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="text-slate-500">React</span>
+                                        <div class="flex text-emerald-500"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i></div>
+                                    </div>
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="text-slate-500">Node.js</span>
+                                        <div class="flex text-emerald-500"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 2 (Background) -->
+                            <div class="bg-slate-100 p-6 rounded-xl shadow-sm border border-slate-200 absolute top-4 left-4 w-full h-full z-10 -rotate-3 opacity-60"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. VACANTES (New) -->
+    <section id="view-vacancies" class="view-section pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
+        <div class="fade-in">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light text-slate-900 mb-4">Oportunidades Destacadas</h2>
+                <p class="text-slate-500">Las mejores empresas buscan talento como el tuyo.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Job Card 1 -->
+                <div class="group bg-white p-6 rounded-lg border border-slate-200 hover:border-slate-900 hover:shadow-lg transition-all cursor-pointer">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-md flex items-center justify-center font-bold">T</div>
+                        <span class="text-xs font-semibold bg-slate-100 px-2 py-1 rounded text-slate-600">Remoto</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Senior Frontend Engineer</h3>
+                    <p class="text-sm text-slate-500 mb-4">TechFlow Inc. • San Francisco (Remoto)</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs border border-slate-200 px-2 py-1 rounded text-slate-600">React</span>
+                        <span class="text-xs border border-slate-200 px-2 py-1 rounded text-slate-600">TypeScript</span>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                        <span class="font-bold text-slate-900">$120k - $150k</span>
+                        <span class="text-sm text-slate-400 group-hover:text-slate-900 transition-colors flex items-center gap-1">Aplicar <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="group bg-white p-6 rounded-lg border border-slate-200 hover:border-slate-900 hover:shadow-lg transition-all cursor-pointer">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-md flex items-center justify-center font-bold">G</div>
+                        <span class="text-xs font-semibold bg-slate-100 px-2 py-1 rounded text-slate-600">Híbrido</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Backend Developer (Go)</h3>
+                    <p class="text-sm text-slate-500 mb-4">GlobalData • Madrid, ES</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs border border-slate-200 px-2 py-1 rounded text-slate-600">Go</span>
+                        <span class="text-xs border border-slate-200 px-2 py-1 rounded text-slate-600">PostgreSQL</span>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                        <span class="font-bold text-slate-900">€65k - €85k</span>
+                        <span class="text-sm text-slate-400 group-hover:text-slate-900 transition-colors flex items-center gap-1">Aplicar <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                    </div>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="group bg-white p-6 rounded-lg border border-slate-200 hover:border-slate-900 hover:shadow-lg transition-all cursor-pointer">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-orange-50 text-orange-600 rounded-md flex items-center justify-center font-bold">A</div>
+                        <span class="text-xs font-semibold bg-slate-100 px-2 py-1 rounded text-slate-600">Remoto</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">DevOps Specialist</h3>
+                    <p class="text-sm text-slate-500 mb-4">Alpha Cloud • New York (Remoto)</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs border border-slate-200 px-2 py-1 rounded text-slate-600">AWS</span>
+                        <span class="text-xs border border-slate-200 px-2 py-1 rounded text-slate-600">Kubernetes</span>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                        <span class="font-bold text-slate-900">$110k - $140k</span>
+                        <span class="text-sm text-slate-400 group-hover:text-slate-900 transition-colors flex items-center gap-1">Aplicar <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EMPRESAS (New) -->
+    <section id="view-companies" class="view-section pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="fade-in">
+            <div class="bg-slate-900 rounded-2xl p-12 text-center text-white mb-16">
+                <h2 class="text-3xl font-light mb-4">Para Empresas Líderes</h2>
+                <p class="text-slate-300 max-w-2xl mx-auto mb-8">
+                    Deja de filtrar cientos de CVs irrelevantes. Accede a nuestro pool curado del top 3% de talento técnico pre-evaluado.
+                </p>
+                <button class="bg-white text-slate-900 px-8 py-3 rounded-md font-bold hover:bg-slate-100 transition-colors">
+                    Contratar Talento
+                </button>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-8">Confían en nosotros</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <!-- Logos simulados con texto minimalista -->
+                <div class="h-24 flex items-center justify-center border border-slate-100 rounded-lg hover:border-slate-300 transition-colors text-xl font-bold text-slate-800">ACME Corp</div>
+                <div class="h-24 flex items-center justify-center border border-slate-100 rounded-lg hover:border-slate-300 transition-colors text-xl font-bold text-slate-800">Starlight</div>
+                <div class="h-24 flex items-center justify-center border border-slate-100 rounded-lg hover:border-slate-300 transition-colors text-xl font-bold text-slate-800">Nebula.io</div>
+                <div class="h-24 flex items-center justify-center border border-slate-100 rounded-lg hover:border-slate-300 transition-colors text-xl font-bold text-slate-800">Vertex</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CÓMO FUNCIONA (New) -->
+    <section id="view-how-it-works" class="view-section pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="fade-in text-center max-w-4xl mx-auto">
+            <h2 class="text-4xl font-light text-slate-900 mb-4">Tu camino al éxito</h2>
+            <p class="text-slate-500 mb-16">Un proceso simple, transparente y diseñado para profesionales.</p>
+
+            <div class="relative">
+                <!-- Connector Line -->
+                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-slate-100 -z-10"></div>
+
+                <div class="grid md:grid-cols-3 gap-12">
+                    <!-- Step 1 -->
+                    <div class="bg-white p-6">
+                        <div class="w-24 h-24 bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 border-8 border-white">1</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Crea tu Perfil</h3>
+                        <p class="text-sm text-slate-500">Completa tu información profesional y sube tu CV en menos de 5 minutos.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white p-6">
+                        <div class="w-24 h-24 bg-white border-2 border-slate-900 text-slate-900 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 relative">
+                            2
+                            <div class="absolute -top-2 -right-2 bg-emerald-500 w-6 h-6 rounded-full border-2 border-white"></div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Valida tus Skills</h3>
+                        <p class="text-sm text-slate-500">Realiza nuestra evaluación técnica única basada en arquitectura real, no algoritmos de pizarrón.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white p-6">
+                        <div class="w-24 h-24 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 border-8 border-white">3</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Recibe Ofertas</h3>
+                        <p class="text-sm text-slate-500">Tu perfil se vuelve visible para empresas top. Ellas te contactan a ti con salario visible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                 <button onclick="navigateTo('apply')" class="px-8 py-4 bg-slate-900 text-white font-medium rounded-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    Comenzar Ahora
+                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. FLUJO DE APLICACIÓN (App Logic) -->
+    <section id="view-apply" class="view-section pt-32 pb-20 px-4 min-h-screen bg-slate-50">
+        <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden fade-in">
+            <!-- App Header -->
+            <div class="px-8 py-6 border-b border-slate-100 flex justify-between items-center bg-white">
+                <span class="font-bold text-lg text-slate-900">Aplicación de Talento</span>
+                <button onclick="navigateTo('landing')" class="text-sm text-slate-500 hover:text-slate-900">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Steps Container -->
+            <div class="p-8">
+                <!-- Progress -->
+                <div id="progress-container" class="mb-10">
+                    <div class="flex justify-between mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        <span id="label-step-1" class="text-slate-900">01. Perfil</span>
+                        <span id="label-step-2">02. Habilidades</span>
+                        <span id="label-step-3">03. CV</span>
+                    </div>
+                    <div class="h-1 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-slate-900 transition-all duration-500 ease-out w-1/3"></div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Info -->
+                <div id="step-1" class="step-content">
+                    <h2 class="text-2xl font-light text-slate-900 mb-2">Comencemos</h2>
+                    <p class="text-slate-500 mb-6">Información básica de contacto.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Nombre Completo</label>
+                            <input type="text" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded focus:bg-white focus:border-slate-900 focus:outline-none transition-colors" placeholder="Ej. Ana García">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Correo</label>
+                            <input type="email" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded focus:bg-white focus:border-slate-900 focus:outline-none transition-colors" placeholder="ana@ejemplo.com">
+                        </div>
+                        <div class="flex justify-end pt-4">
+                            <button onclick="setStep(2)" class="px-6 py-3 bg-slate-900 text-white rounded font-medium hover:bg-slate-800 flex items-center gap-2">Siguiente <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Skills -->
+                <div id="step-2" class="step-content hidden">
+                    <h2 class="text-2xl font-light text-slate-900 mb-2">Evaluación Técnica</h2>
+                    <p class="text-slate-500 mb-6">Califica tu nivel (1-5).</p>
+                    
+                    <div class="space-y-3 mb-8">
+                        <!-- Generador de Skills JS -->
+                        <div id="skills-container"></div>
+                    </div>
+
+                    <div class="flex justify-between pt-4">
+                        <button onclick="setStep(1)" class="px-6 py-3 text-slate-600 border border-slate-200 rounded font-medium hover:text-slate-900 hover:border-slate-900">Atrás</button>
+                        <button onclick="setStep(3)" class="px-6 py-3 bg-slate-900 text-white rounded font-medium hover:bg-slate-800 flex items-center gap-2">Siguiente <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 3: CV Upload -->
+                <div id="step-3" class="step-content hidden">
+                    <h2 class="text-2xl font-light text-slate-900 mb-2">Sube tu CV</h2>
+                    <p class="text-slate-500 mb-6">Formato PDF o Word.</p>
+
+                    <div class="border-2 border-dashed border-slate-300 rounded-lg p-12 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors cursor-pointer relative mb-8">
+                        <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="handleFile(this)">
+                        <div class="bg-slate-100 p-4 rounded-full mb-4 text-slate-600">
+                            <i data-lucide="upload-cloud" class="w-8 h-8"></i>
+                        </div>
+                        <p id="file-label" class="text-slate-900 font-medium">Arrastra tu archivo aquí</p>
+                        <p class="text-xs text-slate-500 mt-1">Máximo 10MB</p>
+                    </div>
+
+                    <div class="flex justify-between pt-4">
+                        <button onclick="setStep(2)" class="px-6 py-3 text-slate-600 border border-slate-200 rounded font-medium hover:text-slate-900 hover:border-slate-900">Atrás</button>
+                        <button onclick="finishApply()" class="px-6 py-3 bg-emerald-600 text-white rounded font-medium hover:bg-emerald-700 shadow-lg shadow-emerald-100">Finalizar Aplicación</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Success -->
+                <div id="step-4" class="step-content hidden text-center py-8">
+                    <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+                        <i data-lucide="check-circle" class="w-10 h-10"></i>
+                    </div>
+                    <h2 class="text-3xl font-light text-slate-900 mb-4">¡Recibido!</h2>
+                    <p class="text-slate-600 mb-8">
+                        Tu perfil está siendo procesado por nuestra IA. Si hay match, te notificaremos en 24 horas.
+                    </p>
+                    <button onclick="navigateTo('landing')" class="px-6 py-3 bg-slate-900 text-white rounded font-medium">Volver al Inicio</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-100 py-12 px-6 bg-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i data-lucide="code-2" class="w-5 h-5 text-slate-900"></i>
+                <span class="font-bold text-slate-900">DevSelect</span>
+            </div>
+            <div class="text-sm text-slate-500">
+                © 2024 DevSelect Inc. Minimalismo Funcional.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts de Lógica -->
+    <script>
+        // Inicializar Iconos
+        lucide.createIcons();
+
+        // Navegación
+        function navigateTo(viewId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.remove('active');
+                el.classList.add('hidden'); // Tailwind hidden
+            });
+            
+            // Mostrar la seleccionada
+            const target = document.getElementById(`view-${viewId}`);
+            if(target) {
+                target.classList.remove('hidden');
+                target.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Lógica del Formulario de Aplicación
+        let currentStep = 1;
+        const skillsList = ['JavaScript', 'React', 'Node.js', 'Python', 'SQL', 'AWS'];
+        
+        // Generar Skills UI
+        const skillsContainer = document.getElementById('skills-container');
+        skillsList.forEach(skill => {
+            const row = document.createElement('div');
+            row.className = 'flex items-center justify-between py-2 border-b border-slate-50';
+            let starsHtml = '';
+            for(let i=1; i<=5; i++) {
+                starsHtml += `<button onclick="rateSkill(this, ${i})" class="text-slate-200 hover:text-slate-400 p-1 transition-colors"><i data-lucide="star" class="w-4 h-4 fill-current"></i></button>`;
+            }
+            row.innerHTML = `<span class="text-sm font-medium text-slate-700">${skill}</span><div class="flex">${starsHtml}</div>`;
+            skillsContainer.appendChild(row);
+        });
+        lucide.createIcons(); // Refrescar iconos generados dinámicamente
+
+        function rateSkill(btn, rating) {
+            const parent = btn.parentElement;
+            const stars = parent.querySelectorAll('button');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('text-slate-200');
+                    star.classList.add('text-slate-900');
+                } else {
+                    star.classList.add('text-slate-200');
+                    star.classList.remove('text-slate-900');
+                }
+            });
+        }
+
+        function setStep(step) {
+            // Ocultar todos los steps
+            document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+            
+            // Mostrar target
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+            
+            // Actualizar barra progreso
+            const progress = document.getElementById('progress-bar');
+            const width = (step / 3) * 100;
+            if(step < 4) progress.style.width = `${width}%`;
+            
+            // Labels
+            document.getElementById('label-step-1').className = step >= 1 ? "text-slate-900" : "";
+            document.getElementById('label-step-2').className = step >= 2 ? "text-slate-900" : "";
+            document.getElementById('label-step-3').className = step >= 3 ? "text-slate-900" : "";
+
+            currentStep = step;
+        }
+
+        function handleFile(input) {
+            if(input.files && input.files[0]) {
+                document.getElementById('file-label').innerText = input.files[0].name;
+                document.getElementById('file-label').classList.add('text-emerald-600');
+            }
+        }
+
+        function finishApply() {
+            setStep(4);
+        }
+
+        // Fix initial state
+        document.querySelectorAll('.view-section').forEach(el => {
+            if(!el.classList.contains('active')) el.classList.add('hidden');
+        });
+
+    </script>
+</body>
+</html>
